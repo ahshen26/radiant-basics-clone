@@ -45,7 +45,7 @@ output$up_sp_lev <- renderUI({
 })
 
 output$ui_single_prop <- renderUI({
-  # req(input$dataset)
+  req(input$dataset)
   tagList(
     wellPanel(
       conditionalPanel(

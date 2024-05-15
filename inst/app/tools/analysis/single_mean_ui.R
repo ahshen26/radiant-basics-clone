@@ -14,8 +14,9 @@ sm_inputs <- reactive({
   ## loop needed because reactive values don't allow single bracket indexing
   sm_args$data_filter <- if (input$show_filter) input$data_filter else ""
   sm_args$dataset <- input$dataset
-  for (i in r_drop(names(sm_args)))
+  for (i in r_drop(names(sm_args))) {
     sm_args[[i]] <- input[[paste0("sm_", i)]]
+  }
   sm_args
 })
 
@@ -29,7 +30,7 @@ output$ui_sm_var <- renderUI({
 })
 
 output$ui_single_mean <- renderUI({
-  # req(input$dataset)
+  req(input$dataset)
   tagList(
     wellPanel(
       conditionalPanel(
@@ -42,7 +43,8 @@ output$ui_single_mean <- renderUI({
           multiple = FALSE
         ),
         sliderInput(
-          "sm_conf_lev", "Confidence level:", min = 0.85, max = 0.99,
+          "sm_conf_lev", "Confidence level:",
+          min = 0.85, max = 0.99,
           value = state_init("sm_conf_lev", sm_args$conf_lev), step = 0.01
         ),
         numericInput(
@@ -73,11 +75,19 @@ sm_plot <- reactive({
   list(plot_width = 650, plot_height = 400 * max(length(input$sm_plots), 1))
 })
 
-sm_plot_width <- function()
-  sm_plot() %>% {if (is.list(.)) .$plot_width else 650}
+sm_plot_width <- function() {
+  sm_plot() %>%
+    {
+      if (is.list(.)) .$plot_width else 650
+    }
+}
 
-sm_plot_height <- function()
-  sm_plot() %>% {if (is.list(.)) .$plot_height else 400}
+sm_plot_height <- function() {
+  sm_plot() %>%
+    {
+      if (is.list(.)) .$plot_height else 400
+    }
+}
 
 ## output is called from the main radiant ui.R
 output$single_mean <- renderUI({
@@ -123,12 +133,16 @@ sm_available <- reactive({
 })
 
 .summary_single_mean <- reactive({
-  if (sm_available() != "available") return(sm_available())
+  if (sm_available() != "available") {
+    return(sm_available())
+  }
   summary(.single_mean())
 })
 
 .plot_single_mean <- reactive({
-  if (sm_available() != "available") return(sm_available())
+  if (sm_available() != "available") {
+    return(sm_available())
+  }
   validate(need(input$sm_plots, "\n\n\n           Nothing to plot. Please select a plot type"))
   withProgress(message = "Generating plots", value = 1, {
     plot(.single_mean(), plots = input$sm_plots, shiny = TRUE)
@@ -136,7 +150,9 @@ sm_available <- reactive({
 })
 
 single_mean_report <- function() {
-  if (is.empty(input$sm_var)) return(invisible())
+  if (is.empty(input$sm_var)) {
+    return(invisible())
+  }
   if (length(input$sm_plots) == 0) {
     figs <- FALSE
     outputs <- c("summary")

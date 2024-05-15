@@ -47,7 +47,7 @@ output$ui_ct_var2 <- renderUI({
 })
 
 output$ui_cross_tabs <- renderUI({
-  # req(input$dataset)
+  req(input$dataset)
   tagList(
     wellPanel(
       conditionalPanel(
