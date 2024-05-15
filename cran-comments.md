@@ -1,5 +1,30 @@
 ## Resubmission
 
+This is a resubmission. In this version I require shiny version 1.8.1 or newer and have addressed a breaking change introduced in that version of shiny. See NEWS.md for details.
+
+## Test environments
+
+* macOS, R 4.4.0
+* macOS, R 4.3.2
+* win-builder (devel)
+
+# Previous cran-comments
+
+## Resubmission
+
+This is a resubmission. See NEWS.md for updates.
+
+## Test environments
+
+* macOS, R 4.3.2
+* win-builder (devel)
+
+## R CMD check results
+
+There were no ERRORs, WARNINGs, or NOTEs.
+
+## Resubmission
+
 This is a resubmission. See NEWS.md for updates.
 
 ## Test environments
@@ -11,7 +36,6 @@ This is a resubmission. See NEWS.md for updates.
 
 There were no ERRORs, WARNINGs, or NOTEs. 
 
-# Previous cran-comments
 
 ## Resubmission
 
