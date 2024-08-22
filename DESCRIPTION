@@ -9,7 +9,7 @@ Description: The Radiant Basics menu includes interfaces for probability
     goodness-of-fit testing, cross-tabs, and correlation. The application extends 
     the functionality in 'radiant.data'.
 Depends:
-    R (>= 4.3.0),
+    R (>= 4.2.0),
     radiant.data (>= 1.6.6)
 Imports:
     ggplot2 (>= 2.2.1),
